@@ -44,8 +44,13 @@ Procedure WebHome(EventType)
   SetGadgetText(#WebView_0, "http://www.spigotmc.org")
 EndProcedure
 
+Procedure ForumLink(EventType)
+  RunProgram("http://http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-tools/2397414-wip-picket-a-simple-server-wrapper-spigot")
+EndProcedure
 
-
+Procedure GithubLink(EventType)
+  RunProgram("https://github.com/jaclegonetwork/Picket")
+EndProcedure 
 If CreateFile(0, "Install.bat")
   WriteStringN(0, "@ECHO off")
   WriteStringN(0, "DEL /Q .spigot")
@@ -84,8 +89,9 @@ EndDataSection
 End   ; All the opened windows are closed automatically by PureBasic
 
 ; IDE Options = PureBasic 5.31 (Windows - x64)
-; CursorPosition = 13
-; Folding = g
+; CursorPosition = 52
+; FirstLine = 10
+; Folding = A-
 ; EnableUnicode
 ; EnableXP
 ; UseIcon = computer-icon.ico
