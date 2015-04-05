@@ -1,2 +1,4 @@
 # Picket
-A Simple Server Wrapper
+A Simple Server Wrapper.
+
+Picket was coded using PureBasic
