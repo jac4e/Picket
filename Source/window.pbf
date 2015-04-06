@@ -9,7 +9,7 @@
 
 Global Window_0
 
-Global Panel_0, Button_3, Button_5, Button_6, Button_7, Container_0, Hyperlink_3, Text_1, String_0, Text_0, Hyperlink_1, Hyperlink_2, Image_2
+Global Panel_0, Button_8, Button_5, Button_6, Button_7, Container_0, Text_1, Hyperlink_3, String_0, Text_0, Hyperlink_1, Hyperlink_2, Image_2
 
 Enumeration FormGadget
   #WebView_0
@@ -28,19 +28,19 @@ Procedure OpenWindow_0(x = 0, y = 0, width = 780, height = 550)
   SetWindowColor(Window_0, RGB(255,255,255))
   Panel_0 = PanelGadget(#PB_Any, 0, 0, 780, 460)
   AddGadgetItem(Panel_0, -1, "Spigot Website")
-  Button_3 = ButtonGadget(#PB_Any, 0, 0, 70, 18, "Home")
-  WebGadget(#WebView_0, 0, 18, 772, 415, "http://www.spigotmc.org")
+  WebGadget(#WebView_0, 0, 28, 772, 405, "http://www.spigotmc.org")
+  Button_8 = ButtonGadget(#PB_Any, 0, 5, 90, 20, "Home")
   AddGadgetItem(Panel_0, -1, "Server (WIP)")
   Button_5 = ButtonGadget(#PB_Any, 640, 8, 130, 50, "Install (Requires Git)")
   Button_6 = ButtonGadget(#PB_Any, 640, 68, 130, 50, "Update (Requires Git)")
   Button_7 = ButtonGadget(#PB_Any, 640, 128, 130, 50, "Start")
   Container_0 = ContainerGadget(#PB_Any, 10, 8, 620, 380, #PB_Container_Flat)
-  Text_1 = TextGadget(#PB_Any, 60, 60, 500, 70, "So far it only opens the server in a new command window, still trying to find a way to properly insert it here")
+  Text_1 = TextGadget(#PB_Any, 130, 150, 360, 90, "Still trying to get this to work")
   CloseGadgetList()
-  Hyperlink_3 = HyperLinkGadget(#PB_Any, 690, 188, 60, 20, "Get Git", 0)
+  Hyperlink_3 = HyperLinkGadget(#PB_Any, 690, 330, 60, 20, "Get Git", 0)
   SetGadgetColor(Hyperlink_3, #PB_Gadget_FrontColor,RGB(0,0,255))
   SetGadgetColor(Hyperlink_3, #PB_Gadget_BackColor,RGB(255,255,255))
-  String_0 = StringGadget(#PB_Any, 10, 398, 620, 20, "WIP")
+  String_0 = StringGadget(#PB_Any, 10, 398, 560, 20, "")
   AddGadgetItem(Panel_0, -1, "About")
   Text_0 = TextGadget(#PB_Any, 180, 10, 410, 48, "Picket is a simple server wrapper (Just like that title says) You can download the latest versions of Picket by going to the github page or by going to the forum page (Links to both down below)")
   SetGadgetColor(Text_0, #PB_Gadget_BackColor,RGB(255,255,255))
@@ -59,12 +59,12 @@ Procedure ResizeGadgetsWindow_0()
   FormWindowWidth = WindowWidth(Window_0)
   FormWindowHeight = WindowHeight(Window_0)
   ResizeGadget(Panel_0, 0, 0, FormWindowWidth - 0, FormWindowHeight - 90)
-  ResizeGadget(#WebView_0, 0, 18, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 8, GetGadgetAttribute(Panel_0,#PB_Panel_ItemHeight) - 23)
+  ResizeGadget(#WebView_0, 0, 28, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 8, GetGadgetAttribute(Panel_0,#PB_Panel_ItemHeight) - 33)
   ResizeGadget(Button_5, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 140, 8, 130, 50)
   ResizeGadget(Button_6, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 140, 68, 130, 50)
   ResizeGadget(Button_7, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 140, 128, 130, 50)
   ResizeGadget(Container_0, 10, 8, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 160, GetGadgetAttribute(Panel_0,#PB_Panel_ItemHeight) - 58)
-  ResizeGadget(String_0, 10, GetGadgetAttribute(Panel_0,#PB_Panel_ItemHeight) - 40, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 160, 20)
+  ResizeGadget(String_0, 10, GetGadgetAttribute(Panel_0,#PB_Panel_ItemHeight) - 40, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 220, 20)
   ResizeGadget(Image_2, 10, FormWindowHeight - 85, 220, 80)
 EndProcedure
 
@@ -81,7 +81,7 @@ Procedure Window_0_Events(event)
 
     Case #PB_Event_Gadget
       Select EventGadget()
-        Case Button_3
+        Case Button_8
           WebHome(EventType())          
         Case Button_5
           InstallHandler(EventType())          

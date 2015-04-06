@@ -2,6 +2,10 @@
 #WindowHeight = 512
 Result$ = GetCurrentDirectory()
 
+ImportC "msvcrt.lib"
+  system(str.p-ascii)
+EndImport
+
 
 XIncludeFile "window.pbf"
 
@@ -21,12 +25,24 @@ Procedure StartHandler(EventType)
     WriteStringN(0, "@ECHO off")
     WriteStringN(0, "cd .spigot")
     WriteStringN(0, "java -Xmx1024M -jar " + file$ + " -o true")
-   WriteStringN(0, "pause") 
     CloseFile(0)
   EndIf
+  
+  OpenConsole("Server Console")
   RunProgram("Start.bat")
 EndProcedure
-  
+
+
+;These two procedures do not work at the moment, PrintN does pass the command to server
+Procedure StopHandler(EventType)
+  PrintN("stop")
+EndProcedure
+
+Procedure InputHandler(EventType) 
+  command$ = GetGadgetText(String_0)
+  PrintN(command$)
+EndProcedure
+
 Procedure UpdateHandler(EventType)
   RunProgram("Update.sh")
 EndProcedure
@@ -89,9 +105,8 @@ EndDataSection
 End   ; All the opened windows are closed automatically by PureBasic
 
 ; IDE Options = PureBasic 5.31 (Windows - x64)
-; CursorPosition = 52
-; FirstLine = 10
-; Folding = A-
+; CursorPosition = 30
+; Folding = H9
 ; EnableUnicode
 ; EnableXP
 ; UseIcon = computer-icon.ico
