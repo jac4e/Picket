@@ -1,10 +1,7 @@
 ﻿#WindowWidth  = 768
 #WindowHeight = 512
 Result$ = GetCurrentDirectory()
-
-ImportC "msvcrt.lib"
-  system(str.p-ascii)
-EndImport
+AppData$ = GetEnvironmentVariable("APPDATA")
 
 
 XIncludeFile "window.pbf"
@@ -19,11 +16,11 @@ SetGadgetState(Image_2, ImageID(logo))
 
 Procedure StartHandler(EventType)
     
-    file$ = OpenFileRequester("Select Server", ".spigot","Java (*.jar)|*.jar|All files (*.*)|*.*", 0)
+    file$ = OpenFileRequester("Select Server", Result$ + "spigot/","Java (*.jar)|*.jar|All files (*.*)|*.*", 0)
   
   If CreateFile(0, "Start.bat")
     WriteStringN(0, "@ECHO off")
-    WriteStringN(0, "cd .spigot")
+    WriteStringN(0, "cd spigot")
     WriteStringN(0, "java -Xmx1024M -jar " + file$ + " -o true")
     CloseFile(0)
   EndIf
@@ -48,8 +45,12 @@ Procedure UpdateHandler(EventType)
 EndProcedure
 
 Procedure InstallHandler(EventType)
-  RunProgram("Install.bat")
-  RunProgram("Update.sh")
+  install = RunProgram("Install.bat", "", "", #PB_Program_Open)
+  WaitProgram(install)
+  CloseProgram(install)
+  update = RunProgram("Update.sh", "", "", #PB_Program_Open)
+  WaitProgram(update)
+  CloseProgram(update)
 EndProcedure
 
 Procedure Git(EventType)
@@ -57,7 +58,7 @@ RunProgram("http://msysgit.github.io/")
 EndProcedure
 
 Procedure WebHome(EventType)
-  SetGadgetText(#WebView_0, "http://www.spigotmc.org")
+  SetGadgetText(#WebView_0, "http://wwwspigotmc.org")
 EndProcedure
 
 Procedure ForumLink(EventType)
@@ -69,18 +70,18 @@ Procedure GithubLink(EventType)
 EndProcedure 
 If CreateFile(0, "Install.bat")
   WriteStringN(0, "@ECHO off")
-  WriteStringN(0, "DEL /Q .spigot")
-  WriteStringN(0, "mkdir .spigot")
-  WriteStringN(0, "cd .spigot")
-  WriteStringN(0, "bitsadmin /Transfer buildtools /Download https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar " + Result$ + ".spigot\BuildTools.jar")
-  WriteStringN(0, "java -jar BuildTools.jar")
+  WriteStringN(0, "DEL /Q spigot")
+  WriteStringN(0, "mkdir spigot")
+  WriteStringN(0, "cd spigot")
+  WriteStringN(0, "bitsadmin /Transfer buildtools /Download https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar " + Result$ + "spigot\BuildTools.jar")
   WriteStringN(0, "pause") 
   CloseFile(0)
 EndIf
 
 If CreateFile(0, "Update.sh")
-  WriteStringN(0, "cd .spigot") 
+  WriteStringN(0, "cd spigot") 
   WriteStringN(0, "java -jar BuildTools.jar") 
+  WriteStringN(0, "pause")
   CloseFile(0)
 EndIf 
 
@@ -105,8 +106,8 @@ EndDataSection
 End   ; All the opened windows are closed automatically by PureBasic
 
 ; IDE Options = PureBasic 5.31 (Windows - x64)
-; CursorPosition = 30
-; Folding = H9
+; CursorPosition = 18
+; Folding = X0
 ; EnableUnicode
 ; EnableXP
 ; UseIcon = computer-icon.ico

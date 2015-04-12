@@ -20,7 +20,9 @@ Declare ResizeGadgetsWindow_0()
 Declare ForumLink(EventType)
 Declare WebHome(EventType)
 Declare GithubLink(EventType)
+Declare Git(EventType)
 Declare StartHandler(EventType)
+Declare UpdateHandler(EventType)
 Declare InstallHandler(EventType)
 
 Procedure OpenWindow_0(x = 0, y = 0, width = 780, height = 550)
@@ -32,12 +34,13 @@ Procedure OpenWindow_0(x = 0, y = 0, width = 780, height = 550)
   Button_8 = ButtonGadget(#PB_Any, 0, 5, 90, 20, "Home")
   AddGadgetItem(Panel_0, -1, "Server (WIP)")
   Button_5 = ButtonGadget(#PB_Any, 640, 8, 130, 50, "Install (Requires Git)")
+  GadgetToolTip(Button_5, "This will delete the entire .spigot folder")
   Button_6 = ButtonGadget(#PB_Any, 640, 68, 130, 50, "Update (Requires Git)")
-  Button_7 = ButtonGadget(#PB_Any, 640, 128, 130, 50, "Start")
+  Button_7 = ButtonGadget(#PB_Any, 640, 128, 130, 50, "Start Server")
   Container_0 = ContainerGadget(#PB_Any, 10, 8, 620, 380, #PB_Container_Flat)
   Text_1 = TextGadget(#PB_Any, 130, 150, 360, 90, "Still trying to get this to work")
   CloseGadgetList()
-  Hyperlink_3 = HyperLinkGadget(#PB_Any, 690, 330, 60, 20, "Get Git", 0)
+  Hyperlink_3 = HyperLinkGadget(#PB_Any, 680, 190, 60, 20, "Get Git", 0)
   SetGadgetColor(Hyperlink_3, #PB_Gadget_FrontColor,RGB(0,0,255))
   SetGadgetColor(Hyperlink_3, #PB_Gadget_BackColor,RGB(255,255,255))
   String_0 = StringGadget(#PB_Any, 10, 398, 560, 20, "")
@@ -86,9 +89,11 @@ Procedure Window_0_Events(event)
         Case Button_5
           InstallHandler(EventType())          
         Case Button_6
-          InstallHandler(EventType())          
+          UpdateHandler(EventType())          
         Case Button_7
           StartHandler(EventType())          
+        Case Hyperlink_3
+          Git(EventType())          
         Case Hyperlink_1
           ForumLink(EventType())          
         Case Hyperlink_2
