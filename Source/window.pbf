@@ -9,7 +9,7 @@
 
 Global Window_0
 
-Global Panel_0, Button_8, Button_5, Button_6, Button_7, Container_0, Text_1, Hyperlink_3, String_0, Text_0, Hyperlink_1, Hyperlink_2, Image_2
+Global Panel_0, Button_8, Button_5, Button_6, Button_7, Hyperlink_3, String_0, Editor_0, Button_9, Text_0, Hyperlink_1, Hyperlink_2, Image_2
 
 Enumeration FormGadget
   #WebView_0
@@ -37,13 +37,12 @@ Procedure OpenWindow_0(x = 0, y = 0, width = 780, height = 550)
   GadgetToolTip(Button_5, "This will delete the entire .spigot folder")
   Button_6 = ButtonGadget(#PB_Any, 640, 68, 130, 50, "Update (Requires Git)")
   Button_7 = ButtonGadget(#PB_Any, 640, 128, 130, 50, "Start Server")
-  Container_0 = ContainerGadget(#PB_Any, 10, 8, 620, 380, #PB_Container_Flat)
-  Text_1 = TextGadget(#PB_Any, 130, 150, 360, 90, "Still trying to get this to work")
-  CloseGadgetList()
   Hyperlink_3 = HyperLinkGadget(#PB_Any, 680, 190, 60, 20, "Get Git", 0)
   SetGadgetColor(Hyperlink_3, #PB_Gadget_FrontColor,RGB(0,0,255))
   SetGadgetColor(Hyperlink_3, #PB_Gadget_BackColor,RGB(255,255,255))
-  String_0 = StringGadget(#PB_Any, 10, 398, 560, 20, "")
+  String_0 = StringGadget(#PB_Any, 10, 398, 560, 20, "Still Doesnt Work :(", #PB_String_ReadOnly)
+  Editor_0 = EditorGadget(#PB_Any, 10, 8, 620, 380, #PB_Editor_ReadOnly | #PB_Editor_WordWrap)
+  Button_9 = ButtonGadget(#PB_Any, 580, 398, 50, 20, "Enter")
   AddGadgetItem(Panel_0, -1, "About")
   Text_0 = TextGadget(#PB_Any, 180, 10, 410, 48, "Picket is a simple server wrapper (Just like that title says) You can download the latest versions of Picket by going to the github page or by going to the forum page (Links to both down below)")
   SetGadgetColor(Text_0, #PB_Gadget_BackColor,RGB(255,255,255))
@@ -66,8 +65,8 @@ Procedure ResizeGadgetsWindow_0()
   ResizeGadget(Button_5, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 140, 8, 130, 50)
   ResizeGadget(Button_6, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 140, 68, 130, 50)
   ResizeGadget(Button_7, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 140, 128, 130, 50)
-  ResizeGadget(Container_0, 10, 8, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 160, GetGadgetAttribute(Panel_0,#PB_Panel_ItemHeight) - 58)
   ResizeGadget(String_0, 10, GetGadgetAttribute(Panel_0,#PB_Panel_ItemHeight) - 40, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 220, 20)
+  ResizeGadget(Editor_0, 10, 8, GetGadgetAttribute(Panel_0,#PB_Panel_ItemWidth) - 160, GetGadgetAttribute(Panel_0,#PB_Panel_ItemHeight) - 58)
   ResizeGadget(Image_2, 10, FormWindowHeight - 85, 220, 80)
 EndProcedure
 
