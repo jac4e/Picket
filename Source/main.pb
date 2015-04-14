@@ -67,7 +67,7 @@ RunProgram("http://msysgit.github.io/")
 EndProcedure
 
 Procedure WebHome(EventType)
-  SetGadgetText(#WebView_0, "http://wwwspigotmc.org")
+  SetGadgetText(#WebView_0, "http://www.spigotmc.org")
 EndProcedure
 
 Procedure ForumLink(EventType)
